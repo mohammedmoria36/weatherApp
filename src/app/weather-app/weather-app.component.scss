@@ -1,0 +1,54 @@
+.cm-form {
+    text-align: center;
+    button {
+        padding: 9px 16px;
+        outline: none;
+        border: 1px solid gray;
+        background-color: #3a3a3a;
+        color: #fff;
+        border-radius: 4px;
+        &:disabled {
+            background-color: gray;
+        }
+    }
+    input {
+        padding: 10px;
+        border: 1px solid gray;
+        border-radius: 4px;
+        margin-right: 9px;
+    }
+}
+.main-weather-container {
+    background-color: #d2d2d2;
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 15px;
+    border-radius: 8px;
+    h1 {
+        font-size: 35px;
+        font-weight: 600;
+    }
+    .temp {
+        display: flex;
+        h2 {
+            font-size: 50px;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+    }
+    .unit {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .weather-info.other-info {
+        h3 {
+            color: #565656;
+        }
+    }
+}
+.err-info {
+    h3 {
+        text-transform: capitalize;
+        font-size: 32px;
+    }
+}

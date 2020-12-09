@@ -1,0 +1,42 @@
+<div class="container my-4">
+    <div class="row g-0 cm-form">
+        <form #weatherInfo="ngForm" (ngSubmit)="onSubmit(weatherInfo)">
+            <input type="text" placeholder="Enter City Name" required [(ngModel)]="name" name="name"
+                #cityName="ngModel">
+            <div *ngIf="!cityName.valid && cityName.touched">
+                City Name is required!
+            </div>
+            <button type="submit" [disabled]="!weatherInfo.form.valid">
+                Search
+            </button>
+        </form>
+    </div>
+    <div style="text-align: center;" *ngIf="loader == true">Loading...</div>
+    <div class="main-weather-container mt-4" *ngIf="dataPresent == true">
+        <div class="row g-0 mb-4 location-details my-2">
+            <h2>{{data.name}}, {{data.sys['country']}}</h2>
+            <!-- <h3>{{currentDate['day']}}, 1:00 pm</h3> -->
+            <h4>{{data.weather[0]['description']}}</h4>
+        </div>
+        <div class="row g-0">
+            <div class="col-4">
+                <div class="weather-info temp d-flex align-items-center">
+                    <img [src]="img_url" alt="">
+                    <h2 class="ml-2">{{data.main && data.main['temp']}} <span class="unit">°C</span></h2>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="weather-info other-info">
+                    <h3>Feels like :{{data.main && data.main['feels_like']}}<span class="unit">°C</span></h3>
+                    <h3>Humidity: {{data.main && data.main['humidity']}}<span class="unit">%</span></h3>
+                    <h3>Wind: {{data.wind['speed']}} <span class="unit">m/s</span> </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2" *ngIf="dataPresent == false">
+        <div class="err-info text-center mt-4">
+            <h3>{{errMsg.message}}</h3>
+        </div>
+    </div>
+</div>
