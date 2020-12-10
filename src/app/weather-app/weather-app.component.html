@@ -22,13 +22,13 @@
             <h4>{{data.weather[0]['description']}}</h4>
         </div>
         <div class="row g-0">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div class="weather-info temp d-flex align-items-center">
                     <img [src]="img_url" alt="">
                     <h2 class="ml-2">{{data.main && data.main['temp']}} <span class="unit">°C</span></h2>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="weather-info other-info">
                     <h3>Feels like :{{data.main && data.main['feels_like']}}<span class="unit">°C</span></h3>
                     <h3>Humidity: {{data.main && data.main['humidity']}}<span class="unit">%</span></h3>
