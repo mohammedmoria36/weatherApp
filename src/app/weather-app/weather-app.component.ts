@@ -56,21 +56,40 @@ export class WeatherAppComponent implements OnInit {
       let json = form.value;
       this.loader = true;
       this.dataPresent = false;
-      this._api.getWeatherData(json).then((res) => {
-        console.log(res)
-        this.data = res;
-        this.loader = false;
-        this.dataPresent = true;
-        let d = new Date();
-        this.currentDate['day'] = this.days[d.getDay()];
-        this.img_url = `https://openweathermap.org/img/wn/${res.weather[0]['icon']}@2x.png`;
-        console.log(this.currentDate)
-      }).catch((err) => {
-        console.log(err)
-        this.errMsg = err['error'];
-        this.loader = false;
-        this.dataPresent = false;
-      })
+      if (isNaN(json.name) == true) {
+        this._api.getWeatherDataByName(json).then((res) => {
+          console.log(res)
+          this.data = res;
+          this.loader = false;
+          this.dataPresent = true;
+          let d = new Date();
+          this.currentDate['day'] = this.days[d.getDay()];
+          this.img_url = `https://openweathermap.org/img/wn/${res.weather[0]['icon']}@2x.png`;
+          console.log(this.currentDate)
+        }).catch((err) => {
+          console.log(err)
+          this.errMsg = err['error'];
+          this.loader = false;
+          this.dataPresent = false;
+        })
+      }
+      if (isNaN(json.name) == false) {
+        this._api.getWeatherDataById(json).then((res) => {
+          console.log(res)
+          this.data = res;
+          this.loader = false;
+          this.dataPresent = true;
+          let d = new Date();
+          this.currentDate['day'] = this.days[d.getDay()];
+          this.img_url = `https://openweathermap.org/img/wn/${res.weather[0]['icon']}@2x.png`;
+          console.log(this.currentDate)
+        }).catch((err) => {
+          console.log(err)
+          this.errMsg = err['error'];
+          this.loader = false;
+          this.dataPresent = false;
+        })
+      }
       // ...our form is valid, we can submit the data
     }
   }

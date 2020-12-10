@@ -9,8 +9,13 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getWeatherData(body) {
+  getWeatherDataByName(body) {
     const url = `${environment.DOMAIN.URL}?q=${body.name}&units=metric&appid=${environment.APIKEY.key}`;
+    console.log(url, 'URL')
+    return this.http.get<any>(url).toPromise();
+  }
+  getWeatherDataById(body) {
+    const url = `${environment.DOMAIN.URL}?id=${body.name}&units=metric&appid=${environment.APIKEY.key}`;
     console.log(url, 'URL')
     return this.http.get<any>(url).toPromise();
   }
